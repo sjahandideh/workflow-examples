@@ -4,9 +4,9 @@ var Task = require("./task.js");
 module.exports.call = (event, context, callback) => {
   var tasks = [];
 
-  event.tasks.forEach(function(k){
-    let t = new Task(k);
-    tasks.push(t.name);
+  event.tasks.forEach(function(taskName){
+    let task = new Task(taskName);
+    tasks.push(task.name);
   });
 
   const response = {
