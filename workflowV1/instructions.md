@@ -15,3 +15,7 @@ workflow-v1
 ### 5. deploy first version
 $ serverless deploy
 
+### 6. add a workflow-tester class
+this class simply calls the handler method of the workflow lambda and returns error or success
+
+$ node workflow-tester.js
