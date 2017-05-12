@@ -1,5 +1,5 @@
 'use strict';
-var Task = require("task.js");
+var Task = require("./task.js");
 
 module.exports.call = (event, context, callback) => {
   var tasks = [];

@@ -4,4 +4,4 @@ class Task {
   }
 }
 
-return module.exports;
+module.exports = Task;
