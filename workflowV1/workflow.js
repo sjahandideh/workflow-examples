@@ -3,18 +3,28 @@ var Task = require("./task.js");
 
 module.exports.call = (event, context, callback) => {
   var tasks = [];
+	var result = 'S';
 
   event.tasks.forEach(function(taskName){
     let task = new Task(taskName);
-    tasks.push(task.name);
+		let result = task.run();
+    tasks.push(result);
+
+		if (task.required == true && result == 'F') {
+			result = 'F';
+		}
   });
+
+	let outputState = function(tasks) {
+		return tasks;
+	};
 
   const response = {
     statusCode: 200,
     body: JSON.stringify({
-      message: 'Workflow V1 executed successfully!',
+      message: outputState(tasks),
       input: event,
-      output: tasks
+      output: result
     }),
   };
 
