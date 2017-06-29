@@ -1,27 +1,27 @@
+const SUCCESS = 0, WARNING = 1, FAILURE = 2;
+
 class Task {
-  constructor(name) {
-    this.name = name;
+	constructor(name, required, forceResult) {
+		this.name = name;
 		this.warning = '';
 		this.error = '';
-		this.required = randomFlag;
-  }
-
-	randomFlag() {
-		return Math.floor(Math.random() * 2) == 1;
+		this.required = required;
+		this.forceResult = forceResult;
 	}
 
 	run() {
 		let randomNum = Math.floor(Math.random() * 3);
+		let result = this.forceResult || randomNum;
 
-		switch (randomNum) {
-			case 0:
+		switch(result) {
+			case WARNING:
 				this.warning = ['WARN - ' + this.name];
-				return 'S';
-			case 1:
-				return 'S';
-			case 2:
+				return 'PASS';
+			case SUCCESS:
+				return 'PASS';
+			case FAILURE:
 				this.error = ['ERROR - ' + this.name];
-				return 'F';
+				return this.required ? 'FAIL' : 'PASS';
 		}
 	}
 }
